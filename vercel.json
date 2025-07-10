@@ -9,14 +9,10 @@
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "http://kingsystem-backend-env.eba-wz8dhig8.us-east-1.elasticbeanstalk.com/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/api/(.*)",
+      "destination": "http://kingsystem-backend-env.eba-wz8dhig8.us-east-1.elasticbeanstalk.com/api/$1"
     }
   ],
   "headers": [
