@@ -298,3 +298,4 @@ function App() {
 }
 
 export default App;
+// Updated for Vercel deploy
