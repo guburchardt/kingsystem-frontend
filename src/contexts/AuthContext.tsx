@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           localStorage.setItem("user", JSON.stringify(user));
         } else {
           // Durante desenvolvimento, tentar login automático
-          if (process.env.NODE_ENV === 'development') {
+          if (process.env.NODE_ENV === 'development' && process.env.REACT_APP_DEV_LOGIN === 'true') {
             try {
               const result = await devLogin();
               setUser(result.user);
