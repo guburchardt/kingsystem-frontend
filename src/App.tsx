@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -24,6 +24,15 @@ import { LoadingSpinner } from './components/common/LoadingSpinner';
 import { FinanceiroPage } from './pages/Financeiro';
 import { EmailsPage, EmailFormPage } from './pages/Emails';
 import { ConsultoresPage, ConsultorFormPage } from './pages/Consultores';
+import Index from './site-pages/Index';
+import Catalogo from './site-pages/Catalogo';
+import Kids from './site-pages/Kids';
+import Contato from './site-pages/Contato';
+import Galeria from './site-pages/Galeria';
+import Depoimentos from './site-pages/Depoimentos';
+import LimousineDetails from './site-pages/LimousineDetails';
+import NotFound from './site-pages/NotFound';
+import TestStyles from './site-pages/TestStyles';
 
 // Create theme
 const theme = createTheme({
@@ -67,10 +76,32 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <>{children}</>;
 };
 
+// Component to check if current route is a public site route
+const useIsPublicRoute = () => {
+  const location = useLocation();
+  const publicRoutes = ['/', '/catalogo', '/kids', '/contato', '/galeria', '/depoimentos'];
+  return publicRoutes.includes(location.pathname) || location.pathname.startsWith('/limousine/');
+};
+
 const AppContent: React.FC = () => {
+  const isPublicRoute = useIsPublicRoute();
+
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    // Remover <Router> daqui
+    <>
+      {/* Only apply CssBaseline for admin routes */}
+      {!isPublicRoute && <CssBaseline />}
       <Routes>
+        {/* Rotas públicas do site oficial */}
+        <Route path="/" element={<Index />} />
+        <Route path="/catalogo" element={<Catalogo />} />
+        <Route path="/kids" element={<Kids />} />
+        <Route path="/contato" element={<Contato />} />
+        <Route path="/galeria" element={<Galeria />} />
+        <Route path="/depoimentos" element={<Depoimentos />} />
+        <Route path="/limousine/:id" element={<LimousineDetails />} />
+        <Route path="/test-styles" element={<TestStyles />} />
+        {/* Rotas administrativas */}
         <Route path="/login" element={
           <PublicRoute>
             <LoginPage />
@@ -279,23 +310,23 @@ const AppContent: React.FC = () => {
             </AppLayout>
           </ProtectedRoute>
         } />
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        {/* 404 para rotas não encontradas */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
-    </Router>
+    </>
   );
 };
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
 export default App;
-// Updated for Vercel deploy
