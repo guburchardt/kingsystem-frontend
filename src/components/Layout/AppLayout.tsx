@@ -42,15 +42,6 @@ interface SubMenuItem {
   icon?: React.ComponentType;
 }
 
-interface MenuItem {
-  text: string;
-  icon: React.ComponentType;
-  path: string;
-  dropdown?: boolean;
-  subItems?: SubMenuItem[];
-  roles?: string[]; // Added roles property
-}
-
 const menuItems = [
   { 
     text: 'INÍCIO', 
