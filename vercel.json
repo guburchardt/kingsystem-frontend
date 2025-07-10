@@ -15,27 +15,19 @@
       "dest": "http://kingsystem-backend-env.eba-wz8dhig8.us-east-1.elasticbeanstalk.com/api/$1"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/favicon.ico"
-    },
-    {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/images/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
   ],
-  "env": {
-    "REACT_APP_API_URL": "https://kingsystem-frontend-b1hxayfko-gustavo-burchardts-projects.vercel.app"
-  }
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "upgrade-insecure-requests"
+        }
+      ]
+    }
+  ]
 } 
