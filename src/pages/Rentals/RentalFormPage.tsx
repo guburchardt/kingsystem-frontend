@@ -189,8 +189,6 @@ export const RentalFormPage: React.FC = () => {
           total_cost: totalCosts, // Total de cortesias (custos operacionais)
           seller_id: currentUser.user.id,
           event_day_of_week,
-          status: 'pending' as const,
-          payment_status: 'pending' as const,
           has_pending_issues: false,
         };
 
@@ -198,6 +196,12 @@ export const RentalFormPage: React.FC = () => {
         if (isEditing) {
           const event_date_return = values.event_date_return || values.event_date;
           rentalData.event_date_return = event_date_return;
+        }
+
+        // Só incluir status e payment_status na criação
+        if (!isEditing) {
+          rentalData.status = 'pending';
+          rentalData.payment_status = 'pending';
         }
 
         console.log('Dados sendo enviados para atualização:', rentalData);
