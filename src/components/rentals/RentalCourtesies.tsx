@@ -220,6 +220,12 @@ export const RentalCourtesies: React.FC<RentalCourtesiesProps> = memo(({
   const currentCourtesies = rentalId === 'new' ? tempCourtesies : courtesies;
   const totalValue = (currentCourtesies || []).reduce((sum, rc) => sum + (Number(rc.total_value) || 0), 0);
 
+  // Logs para debug
+  useEffect(() => {
+    console.log('🔍 RentalCourtesies - disabled:', disabled);
+    console.log('🔍 RentalCourtesies - available courtesies:', getAvailableCourtesiesForSelect().length);
+  }, [disabled]);
+
   // Don't render if rentalId is not valid (but allow 'new' for new rentals)
   if (!rentalId || rentalId === 'undefined' || rentalId === 'null') {
     return null;

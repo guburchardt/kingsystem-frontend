@@ -282,11 +282,18 @@ export const RentalFormPage: React.FC = () => {
       setIsAdmin(isUserAdmin);
       
       // Verificar se o vendedor pode editar (admin sempre pode, vendedor só se status for 'pending')
+      console.log('🔍 Verificando permissões de edição:');
+      console.log('   Usuário é admin:', isUserAdmin);
+      console.log('   Status da locação:', rentalData.status);
+      console.log('   Tipo do status:', typeof rentalData.status);
+      
       if (!isUserAdmin) {
         // Vendedor só pode editar se a locação estiver aguardando aprovação (status 'pending')
         const canSellerEdit = rentalData.status === 'pending';
+        console.log('   Vendedor pode editar:', canSellerEdit);
         setCanEdit(canSellerEdit);
       } else {
+        console.log('   Admin sempre pode editar');
         setCanEdit(true); // Admin sempre pode editar
       }
       
