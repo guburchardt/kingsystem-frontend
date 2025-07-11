@@ -52,7 +52,7 @@ class ReportService {
       endDate: params.endDate,
     });
 
-    const response = await fetch(`${API_BASE_URL}/reports/financial?${queryParams}`, {
+    const response = await fetch(`${API_BASE_URL}/api/reports/financial?${queryParams}`, {
       headers: getAuthHeaders(),
     });
 
@@ -73,7 +73,7 @@ class ReportService {
       queryParams.append('status', params.status);
     }
 
-    const response = await fetch(`${API_BASE_URL}/reports/rentals?${queryParams}`, {
+    const response = await fetch(`${API_BASE_URL}/api/reports/rentals?${queryParams}`, {
       headers: getAuthHeaders(),
     });
 
@@ -92,7 +92,7 @@ class ReportService {
     if (params.userId) queryParams.append('userId', params.userId);
     if (params.vehicleId) queryParams.append('vehicleId', params.vehicleId);
 
-    const response = await fetch(`${API_BASE_URL}/reports/monthly-sales?${queryParams}`, {
+    const response = await fetch(`${API_BASE_URL}/api/reports/monthly-sales?${queryParams}`, {
       headers: getAuthHeaders(),
     });
 
@@ -106,7 +106,7 @@ class ReportService {
   async downloadReport(type: string, params: any) {
     const queryParams = new URLSearchParams(params);
     
-    const response = await fetch(`${API_BASE_URL}/reports/pdf/${type}?${queryParams}`, {
+    const response = await fetch(`${API_BASE_URL}/api/reports/pdf/${type}?${queryParams}`, {
       headers: getAuthHeaders(),
     });
 

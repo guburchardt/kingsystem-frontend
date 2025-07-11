@@ -5,7 +5,7 @@ class CourtesyService {
   // Get all active courtesies
   async getActiveCourtesies(): Promise<Courtesy[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/courtesies/active`, {
+      const response = await fetch(`${API_BASE_URL}/api/courtesies/active`, {
         method: "GET",
         headers: getAuthHeaders(),
       });
@@ -25,7 +25,7 @@ class CourtesyService {
   // Get all courtesies (admin only)
   async getAllCourtesies(): Promise<Courtesy[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/courtesies`, {
+      const response = await fetch(`${API_BASE_URL}/api/courtesies`, {
         method: "GET",
         headers: getAuthHeaders(),
       });
@@ -45,7 +45,7 @@ class CourtesyService {
   // Create new courtesy (admin only)
   async createCourtesy(courtesy: Omit<Courtesy, 'id' | 'created_at' | 'updated_at'>): Promise<Courtesy> {
     try {
-      const response = await fetch(`${API_BASE_URL}/courtesies`, {
+      const response = await fetch(`${API_BASE_URL}/api/courtesies`, {
         method: "POST",
         headers: getAuthHeaders(),
         body: JSON.stringify(courtesy),
@@ -66,7 +66,7 @@ class CourtesyService {
   // Update courtesy (admin only)
   async updateCourtesy(id: string, updates: Partial<Courtesy>): Promise<Courtesy> {
     try {
-      const response = await fetch(`${API_BASE_URL}/courtesies/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/courtesies/${id}`, {
         method: "PUT",
         headers: getAuthHeaders(),
         body: JSON.stringify(updates),
@@ -87,7 +87,7 @@ class CourtesyService {
   // Delete courtesy (admin only)
   async deleteCourtesy(id: string): Promise<void> {
     try {
-      const response = await fetch(`${API_BASE_URL}/courtesies/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/courtesies/${id}`, {
         method: "DELETE",
         headers: getAuthHeaders(),
       });
@@ -104,7 +104,7 @@ class CourtesyService {
   // Get courtesies for a specific rental
   async getRentalCourtesies(rentalId: string): Promise<RentalCourtesy[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/courtesies`, {
+      const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/courtesies`, {
         method: "GET",
         headers: getAuthHeaders(),
       });
@@ -124,7 +124,7 @@ class CourtesyService {
   // Add courtesy to rental
   async addCourtesyToRental(rentalId: string, courtesyId: string, quantity: number = 1): Promise<RentalCourtesy> {
     try {
-      const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/courtesies`, {
+      const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/courtesies`, {
         method: "POST",
         headers: getAuthHeaders(),
         body: JSON.stringify({
@@ -148,7 +148,7 @@ class CourtesyService {
   // Update courtesy quantity in rental
   async updateRentalCourtesyQuantity(rentalId: string, courtesyId: string, quantity: number): Promise<RentalCourtesy> {
     try {
-      const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/courtesies/${courtesyId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/courtesies/${courtesyId}`, {
         method: "PUT",
         headers: getAuthHeaders(),
         body: JSON.stringify({ quantity }),
@@ -169,7 +169,7 @@ class CourtesyService {
   // Remove courtesy from rental
   async removeCourtesyFromRental(rentalId: string, courtesyId: string): Promise<void> {
     try {
-      const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/courtesies/${courtesyId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/courtesies/${courtesyId}`, {
         method: "DELETE",
         headers: getAuthHeaders(),
       });
@@ -186,7 +186,7 @@ class CourtesyService {
   // Calculate total courtesies value for a rental
   async calculateRentalCourtesiesTotal(rentalId: string): Promise<number> {
     try {
-      const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/courtesies/total`, {
+      const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/courtesies/total`, {
         method: "GET",
         headers: getAuthHeaders(),
       });

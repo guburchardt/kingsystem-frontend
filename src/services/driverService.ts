@@ -3,7 +3,7 @@ import { API_BASE_URL, getAuthHeaders } from './api';
 
 class DriverService {
   async getActiveDrivers(): Promise<{ drivers: Driver[] }> {
-    const response = await fetch(`${API_BASE_URL}/drivers/active`, {
+    const response = await fetch(`${API_BASE_URL}/api/drivers/active`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -12,7 +12,7 @@ class DriverService {
   }
 
   async getDrivers(): Promise<DriversResponse> {
-    const response = await fetch(`${API_BASE_URL}/drivers`, {
+    const response = await fetch(`${API_BASE_URL}/api/drivers`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -21,7 +21,7 @@ class DriverService {
   }
 
   async getDriverById(id: string): Promise<{ driver: Driver }> {
-    const response = await fetch(`${API_BASE_URL}/drivers/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/drivers/${id}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -30,7 +30,7 @@ class DriverService {
   }
 
   async createDriver(driver: Omit<Driver, 'id' | 'created_at' | 'updated_at'>): Promise<{ driver: Driver }> {
-    const response = await fetch(`${API_BASE_URL}/drivers`, {
+    const response = await fetch(`${API_BASE_URL}/api/drivers`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(driver),
@@ -50,7 +50,7 @@ class DriverService {
   }
 
   async updateDriver(id: string, updates: Partial<Driver>): Promise<{ driver: Driver }> {
-    const response = await fetch(`${API_BASE_URL}/drivers/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/drivers/${id}`, {
       method: "PUT",
       headers: getAuthHeaders(),
       body: JSON.stringify(updates),
@@ -70,7 +70,7 @@ class DriverService {
   }
 
   async deleteDriver(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/drivers/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/drivers/${id}`, {
       method: "DELETE",
       headers: getAuthHeaders(),
     });

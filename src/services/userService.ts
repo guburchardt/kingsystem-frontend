@@ -3,7 +3,7 @@ import { API_BASE_URL, getAuthHeaders } from './api';
 
 class UserService {
   async getUsers(): Promise<UsersResponse> {
-    const response = await fetch(`${API_BASE_URL}/users`, {
+    const response = await fetch(`${API_BASE_URL}/api/users`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -12,7 +12,7 @@ class UserService {
   }
 
   async getUserById(id: string): Promise<{ user: User }> {
-    const response = await fetch(`${API_BASE_URL}/users/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/users/${id}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -21,7 +21,7 @@ class UserService {
   }
 
   async createUser(user: Omit<User, 'id' | 'created_at' | 'updated_at'>): Promise<{ user: User }> {
-    const response = await fetch(`${API_BASE_URL}/users`, {
+    const response = await fetch(`${API_BASE_URL}/api/users`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(user),
@@ -31,7 +31,7 @@ class UserService {
   }
 
   async updateUser(id: string, updates: Partial<User>): Promise<{ user: User }> {
-    const response = await fetch(`${API_BASE_URL}/users/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/users/${id}`, {
       method: "PUT",
       headers: getAuthHeaders(),
       body: JSON.stringify(updates),
@@ -41,7 +41,7 @@ class UserService {
   }
 
   async deleteUser(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/users/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/users/${id}`, {
       method: "DELETE",
       headers: getAuthHeaders(),
     });
@@ -50,7 +50,7 @@ class UserService {
 
   // Buscar usuários ativos (para dropdowns)
   async getActiveUsers(): Promise<{ users: User[] }> {
-    const response = await fetch(`${API_BASE_URL}/users/active`, {
+    const response = await fetch(`${API_BASE_URL}/api/users/active`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -60,7 +60,7 @@ class UserService {
 
   // Ativar/desativar usuário
   async toggleUserStatus(id: string, status: 'active' | 'inactive'): Promise<{ message: string; user: User }> {
-    const response = await fetch(`${API_BASE_URL}/users/${id}/status`, {
+    const response = await fetch(`${API_BASE_URL}/api/users/${id}/status`, {
       method: "PUT",
       headers: getAuthHeaders(),
       body: JSON.stringify({ status }),
@@ -71,7 +71,7 @@ class UserService {
 
   // Buscar perfil do usuário atual
   async getCurrentUserProfile(): Promise<{ user: User }> {
-    const response = await fetch(`${API_BASE_URL}/auth/me`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -81,7 +81,7 @@ class UserService {
 
   // Atualizar perfil do usuário atual
   async updateCurrentUserProfile(userData: Partial<User>): Promise<{ message: string; user: User }> {
-    const response = await fetch(`${API_BASE_URL}/auth/profile`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
       method: "PUT",
       headers: getAuthHeaders(),
       body: JSON.stringify(userData),

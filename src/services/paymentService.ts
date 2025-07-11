@@ -3,7 +3,7 @@ import { API_BASE_URL, getAuthHeaders } from './api';
 
 class PaymentService {
   async getPayments(): Promise<{ payments: Payment[] }> {
-    const url = API_BASE_URL.endsWith('/') ? `${API_BASE_URL}payments` : `${API_BASE_URL}/payments`;
+    const url = API_BASE_URL.endsWith('/') ? `${API_BASE_URL}api/payments` : `${API_BASE_URL}/api/payments`;
     const response = await fetch(url, {
       method: "GET",
       headers: getAuthHeaders(),
@@ -13,7 +13,7 @@ class PaymentService {
   }
 
   async getRentalPayments(rentalId: string): Promise<Payment[]> {
-    const response = await fetch(`${API_BASE_URL}/payments/rental/${rentalId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/rental/${rentalId}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -23,7 +23,7 @@ class PaymentService {
   }
 
   async getPaymentById(id: string): Promise<{ payment: Payment }> {
-    const response = await fetch(`${API_BASE_URL}/payments/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/${id}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -32,7 +32,7 @@ class PaymentService {
   }
 
   async createPayment(payment: Omit<Payment, 'id' | 'created_at' | 'updated_at'>): Promise<{ payment: Payment }> {
-    const response = await fetch(`${API_BASE_URL}/payments`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(payment),
@@ -42,7 +42,7 @@ class PaymentService {
   }
 
   async updatePayment(id: string, updates: Partial<Payment>): Promise<{ payment: Payment }> {
-    const response = await fetch(`${API_BASE_URL}/payments/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/${id}`, {
       method: "PUT",
       headers: getAuthHeaders(),
       body: JSON.stringify(updates),
@@ -52,7 +52,7 @@ class PaymentService {
   }
 
   async deletePayment(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/payments/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/${id}`, {
       method: "DELETE",
       headers: getAuthHeaders(),
     });
@@ -64,7 +64,7 @@ class PaymentService {
     const formData = new FormData();
     formData.append('receipt', file);
 
-    const response = await fetch(`${API_BASE_URL}/payments/${paymentId}/receipt`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/${paymentId}/receipt`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -83,7 +83,7 @@ class PaymentService {
 
   // Confirm payment (Admin only)
   async confirmPayment(paymentId: string, paymentDate?: string): Promise<any> {
-    const response = await fetch(`${API_BASE_URL}/payments/${paymentId}/confirm`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/${paymentId}/confirm`, {
       method: 'PUT',
       headers: getAuthHeaders(),
       body: JSON.stringify({ payment_date: paymentDate }),
@@ -99,7 +99,7 @@ class PaymentService {
 
   // Reject payment (Admin only)
   async rejectPayment(paymentId: string, reason: string): Promise<any> {
-    const response = await fetch(`${API_BASE_URL}/payments/${paymentId}/reject`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/${paymentId}/reject`, {
       method: 'PUT',
       headers: getAuthHeaders(),
       body: JSON.stringify({ reason }),
@@ -115,7 +115,7 @@ class PaymentService {
 
   // Recalculate payment status for all rentals (Admin only)
   async recalculateAllPaymentStatus(): Promise<any> {
-    const response = await fetch(`${API_BASE_URL}/payments/recalculate-status`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/recalculate-status`, {
       method: 'POST',
       headers: getAuthHeaders(),
     });
@@ -131,7 +131,7 @@ class PaymentService {
   // Force refresh payment status for a specific rental
   async refreshRentalPaymentStatus(rentalId: string): Promise<Payment[]> {
     // First, get the payments (this will trigger recalculation in backend)
-    const response = await fetch(`${API_BASE_URL}/payments/rental/${rentalId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/payments/rental/${rentalId}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });

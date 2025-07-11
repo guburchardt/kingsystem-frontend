@@ -12,7 +12,7 @@ class VehicleService {
       if (search) params.append('search', search);
       if (status) params.append('status', status);
 
-      const response = await fetch(`${API_BASE_URL}/vehicles?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/api/vehicles?${params}`, {
         method: 'GET',
         headers,
       });
@@ -34,7 +34,7 @@ class VehicleService {
   async getVehicleById(id: string): Promise<{ vehicle: Vehicle }> {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/vehicles/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/vehicles/${id}`, {
         method: 'GET',
         headers,
       });
@@ -56,7 +56,7 @@ class VehicleService {
   async createVehicle(vehicleData: Omit<Vehicle, 'id' | 'created_at' | 'updated_at'>): Promise<{ message: string; vehicle: Vehicle }> {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/vehicles`, {
+      const response = await fetch(`${API_BASE_URL}/api/vehicles`, {
         method: 'POST',
         headers,
         body: JSON.stringify(vehicleData),
@@ -83,7 +83,7 @@ class VehicleService {
   async updateVehicle(id: string, vehicleData: Partial<Vehicle>): Promise<{ message: string; vehicle: Vehicle }> {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/vehicles/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/vehicles/${id}`, {
         method: 'PUT',
         headers,
         body: JSON.stringify(vehicleData),
@@ -110,7 +110,7 @@ class VehicleService {
   async deleteVehicle(id: string): Promise<{ message: string }> {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/vehicles/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/vehicles/${id}`, {
         method: 'DELETE',
         headers,
       });
@@ -132,7 +132,7 @@ class VehicleService {
   async getActiveVehicles(): Promise<{ vehicles: Vehicle[] }> {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/vehicles?status=active`, {
+      const response = await fetch(`${API_BASE_URL}/api/vehicles?status=active`, {
         method: 'GET',
         headers,
       });
@@ -154,7 +154,7 @@ class VehicleService {
   async toggleVehicleStatus(id: string, status: 'active' | 'inactive' | 'maintenance'): Promise<{ message: string; vehicle: Vehicle }> {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/vehicles/${id}/status`, {
+      const response = await fetch(`${API_BASE_URL}/api/vehicles/${id}/status`, {
         method: 'PATCH',
         headers,
         body: JSON.stringify({ status }),

@@ -6,7 +6,7 @@ class DashboardService {
   async getMetrics(): Promise<DashboardMetrics> {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/dashboard/metrics`, {
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/metrics`, {
         method: 'GET',
         headers,
       });
@@ -32,7 +32,7 @@ class DashboardService {
       if (month) params.append('month', month.toString());
       if (year) params.append('year', year.toString());
 
-      const response = await fetch(`${API_BASE_URL}/dashboard/seller-performance?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/seller-performance?${params}`, {
         method: 'GET',
         headers,
       });
@@ -66,7 +66,7 @@ class DashboardService {
   async getRecentRentals(limit: number = 10) {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/dashboard/recent-rentals?limit=${limit}`, {
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/recent-rentals?limit=${limit}`, {
         method: 'GET',
         headers,
       });
@@ -88,7 +88,7 @@ class DashboardService {
   async getUpcomingRentals(limit: number = 10) {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/dashboard/upcoming-rentals?limit=${limit}`, {
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/upcoming-rentals?limit=${limit}`, {
         method: 'GET',
         headers,
       });
@@ -110,7 +110,7 @@ class DashboardService {
   async getSalesGoals() {
     try {
       const headers = getAuthHeaders();
-      const response = await fetch(`${API_BASE_URL}/dashboard/sales-goals`, {
+      const response = await fetch(`${API_BASE_URL}/api/dashboard/sales-goals`, {
         method: 'GET',
         headers,
       });

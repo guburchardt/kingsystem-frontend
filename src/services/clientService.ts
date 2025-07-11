@@ -4,7 +4,7 @@ import { API_BASE_URL, getAuthHeaders } from './api';
 class ClientService {
 
   async getActiveClients(): Promise<{ clients: Client[] }> {
-    const response = await fetch(`${API_BASE_URL}/clients/active`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients/active`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -13,7 +13,7 @@ class ClientService {
   }
 
   async getClients(): Promise<ClientsResponse> {
-    const response = await fetch(`${API_BASE_URL}/clients`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -22,7 +22,7 @@ class ClientService {
   }
 
   async getClientById(id: string): Promise<{ client: Client }> {
-    const response = await fetch(`${API_BASE_URL}/clients/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -31,7 +31,7 @@ class ClientService {
   }
 
   async createClient(client: Omit<Client, 'id' | 'created_at' | 'updated_at'>): Promise<{ client: Client }> {
-    const response = await fetch(`${API_BASE_URL}/clients`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(client),
@@ -51,7 +51,7 @@ class ClientService {
   }
 
   async updateClient(id: string, updates: Partial<Client>): Promise<{ client: Client }> {
-    const response = await fetch(`${API_BASE_URL}/clients/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
       method: "PUT",
       headers: getAuthHeaders(),
       body: JSON.stringify(updates),
@@ -71,7 +71,7 @@ class ClientService {
   }
 
   async deleteClient(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/clients/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
       method: "DELETE",
       headers: getAuthHeaders(),
     });

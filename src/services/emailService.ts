@@ -62,7 +62,7 @@ class EmailService {
     if (filters?.month) params.append('month', filters.month.toString());
     if (filters?.year) params.append('year', filters.year.toString());
 
-    const response = await fetch(`${API_BASE_URL}/emails?${params.toString()}`, {
+    const response = await fetch(`${API_BASE_URL}/api/emails?${params.toString()}`, {
       headers: getAuthHeaders(),
     });
     
@@ -80,7 +80,7 @@ class EmailService {
     if (filters?.month) params.append('month', filters.month.toString());
     if (filters?.year) params.append('year', filters.year.toString());
 
-    const response = await fetch(`${API_BASE_URL}/emails/stats?${params.toString()}`, {
+    const response = await fetch(`${API_BASE_URL}/api/emails/stats?${params.toString()}`, {
       headers: getAuthHeaders(),
     });
     
@@ -92,7 +92,7 @@ class EmailService {
   }
 
   async getEmailById(id: string): Promise<Email> {
-    const response = await fetch(`${API_BASE_URL}/emails/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/emails/${id}`, {
       headers: getAuthHeaders(),
     });
     
@@ -105,7 +105,7 @@ class EmailService {
   }
 
   async createEmail(data: CreateEmailData): Promise<Email> {
-    const response = await fetch(`${API_BASE_URL}/emails`, {
+    const response = await fetch(`${API_BASE_URL}/api/emails`, {
       method: 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -120,7 +120,7 @@ class EmailService {
   }
 
   async updateEmail(id: string, data: UpdateEmailData): Promise<Email> {
-    const response = await fetch(`${API_BASE_URL}/emails/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/emails/${id}`, {
       method: 'PUT',
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -135,7 +135,7 @@ class EmailService {
   }
 
   async assignEmail(id: string, userId: string): Promise<Email> {
-    const response = await fetch(`${API_BASE_URL}/emails/${id}/assign`, {
+    const response = await fetch(`${API_BASE_URL}/api/emails/${id}/assign`, {
       method: 'PATCH',
       headers: getAuthHeaders(),
       body: JSON.stringify({ assigned_to: userId }),
@@ -150,7 +150,7 @@ class EmailService {
   }
 
   async deleteEmail(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/emails/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/emails/${id}`, {
       method: 'DELETE',
       headers: getAuthHeaders(),
     });
@@ -162,7 +162,7 @@ class EmailService {
 
   // Método para criar email público (sem autenticação) - para formulário do site
   async createPublicEmail(data: CreateEmailData): Promise<Email> {
-    const response = await fetch(`${API_BASE_URL}/emails`, {
+    const response = await fetch(`${API_BASE_URL}/api/emails`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -70,7 +70,7 @@ export const financeiroService = {
     if (params.year) queryParams.append('year', params.year.toString());
     if (params.status) queryParams.append('status', params.status);
 
-    const response = await fetch(`${API_BASE_URL}/financeiro/receitas?${queryParams}`, {
+    const response = await fetch(`${API_BASE_URL}/api/financeiro/receitas?${queryParams}`, {
       method: 'GET',
       headers: getAuthHeaders(),
     });
@@ -87,7 +87,7 @@ export const financeiroService = {
     if (params.month) queryParams.append('month', params.month.toString());
     if (params.year) queryParams.append('year', params.year.toString());
 
-    const response = await fetch(`${API_BASE_URL}/financeiro/despesas?${queryParams}`, {
+    const response = await fetch(`${API_BASE_URL}/api/financeiro/despesas?${queryParams}`, {
       method: 'GET',
       headers: getAuthHeaders(),
     });
@@ -100,7 +100,7 @@ export const financeiroService = {
   },
 
   async updateReceitaStatus(receitaId: string, status: string) {
-    const response = await fetch(`${API_BASE_URL}/financeiro/receitas/${receitaId}/status`, {
+    const response = await fetch(`${API_BASE_URL}/api/financeiro/receitas/${receitaId}/status`, {
       method: 'PUT',
       headers: getAuthHeaders(),
       body: JSON.stringify({ status }),

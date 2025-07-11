@@ -3,7 +3,7 @@ import { API_BASE_URL, getAuthHeaders } from './api';
 
 class CostService {
   async getCosts(): Promise<{ costs: Cost[] }> {
-    const response = await fetch(`${API_BASE_URL}/costs`, {
+    const response = await fetch(`${API_BASE_URL}/api/costs`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -12,7 +12,7 @@ class CostService {
   }
 
   async getCostById(id: string): Promise<{ cost: Cost }> {
-    const response = await fetch(`${API_BASE_URL}/costs/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/costs/${id}`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -21,7 +21,7 @@ class CostService {
   }
 
   async createCost(cost: Omit<Cost, 'id'>): Promise<{ cost: Cost }> {
-    const response = await fetch(`${API_BASE_URL}/costs`, {
+    const response = await fetch(`${API_BASE_URL}/api/costs`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(cost),
@@ -31,7 +31,7 @@ class CostService {
   }
 
   async updateCost(id: string, updates: Partial<Cost>): Promise<{ cost: Cost }> {
-    const response = await fetch(`${API_BASE_URL}/costs/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/costs/${id}`, {
       method: "PUT",
       headers: getAuthHeaders(),
       body: JSON.stringify(updates),
@@ -41,7 +41,7 @@ class CostService {
   }
 
   async deleteCost(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/costs/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/costs/${id}`, {
       method: "DELETE",
       headers: getAuthHeaders(),
     });
@@ -49,7 +49,7 @@ class CostService {
   }
 
   async getRentalCosts(rentalId: string): Promise<{ rentalCosts: RentalCost[] }> {
-    const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/costs`, {
+    const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/costs`, {
       method: "GET",
       headers: getAuthHeaders(),
     });
@@ -58,7 +58,7 @@ class CostService {
   }
 
   async addRentalCost(rentalId: string, costId: string, quantity: number): Promise<{ rentalCost: RentalCost }> {
-    const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/costs`, {
+    const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/costs`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify({ cost_id: costId, quantity }),
@@ -68,7 +68,7 @@ class CostService {
   }
 
   async updateRentalCost(rentalId: string, costId: string, value: number): Promise<{ rentalCost: RentalCost }> {
-    const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/costs/${costId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/costs/${costId}`, {
       method: "PUT",
       headers: getAuthHeaders(),
       body: JSON.stringify({ value }),
@@ -78,7 +78,7 @@ class CostService {
   }
 
   async removeRentalCost(rentalId: string, costId: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/rentals/${rentalId}/costs/${costId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/rentals/${rentalId}/costs/${costId}`, {
       method: "DELETE",
       headers: getAuthHeaders(),
     });
