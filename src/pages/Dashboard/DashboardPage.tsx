@@ -5,6 +5,7 @@ import { dashboardService } from '../../services/dashboardService';
 import { useAuth } from '../../contexts/AuthContext';
 import { DashboardMetrics, SalesPerformance } from '../../types';
 import { API_BASE_URL, getAuthHeaders } from '../../services/api';
+import { authService } from '../../services/authService';
 
 export const DashboardPage: React.FC = () => {
   const { user } = useAuth();
@@ -33,6 +34,10 @@ export const DashboardPage: React.FC = () => {
       setLoading(false);
       return;
     }
+
+    const token = authService.getToken();
+    console.log("🔐 Token atual:", token);
+    console.log("🔑 Headers de auth:", getAuthHeaders());
 
     try {
       setLoading(true);
