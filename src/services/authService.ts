@@ -105,7 +105,7 @@ class AuthService {
         } else if (error.message.includes('timeout')) {
           throw new Error("Request timed out. Please check your connection.");
         } else {
-          throw error;
+      throw error;
         }
       }
       
@@ -152,6 +152,13 @@ class AuthService {
 
   getToken(): string | null {
     return this.token;
+  }
+
+  getAuthHeaders(): Record<string, string> {
+    return {
+      "Content-Type": "application/json",
+      "Authorization": this.token ? `Bearer ${this.token}` : "",
+    };
   }
 }
 
