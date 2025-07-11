@@ -19,7 +19,7 @@ function normalizeApiUrl(url: string): string {
 }
 
 export const config = {
-  API_URL: normalizeApiUrl(process.env.REACT_APP_API_URL || 'kingsystem-backend-env.eba-wz8dhig8.us-east-1.elasticbeanstalk.com'),
+  API_URL: normalizeApiUrl(process.env.REACT_APP_API_URL || 'kingbackend.us-east-1.elasticbeanstalk.com'),
 };
 
 console.log('🔍 Config API_URL:', config.API_URL); 
