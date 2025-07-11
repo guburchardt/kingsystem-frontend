@@ -815,7 +815,7 @@ export const RentalFormPage: React.FC = () => {
                           secondary={`Enviado por: ${file.uploaded_by_name || 'Usuário'} em ${new Date(file.created_at).toLocaleString()}`}
                         />
                         <ListItemSecondaryAction>
-                          <IconButton edge="end" aria-label="download" onClick={() => handleDownloadFile(file.rental_id, file.original_name)}>
+                          <IconButton edge="end" aria-label="download" onClick={() => handleDownloadFile(file.id, file.original_name)}>
                             <DownloadIcon />
                           </IconButton>
                           {isAdmin && (
