@@ -320,11 +320,11 @@ const AppContent: React.FC = () => {
 function App() {
   return (
     <Router>
-      <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <AppContent />
-        </AuthProvider>
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ThemeProvider>
     </Router>
   );
 }
