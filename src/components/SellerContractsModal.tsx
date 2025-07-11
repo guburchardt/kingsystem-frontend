@@ -21,8 +21,7 @@ import {
 } from '@mui/material';
 import { Download } from '@mui/icons-material';
 import { Rental } from '../types';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+import { API_BASE_URL, getAuthHeaders } from '../services/api';
 
 interface SellerContractsModalProps {
   open: boolean;
@@ -45,13 +44,7 @@ export const SellerContractsModal: React.FC<SellerContractsModalProps> = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
 
-  const getAuthHeaders = () => {
-    const token = localStorage.getItem("authToken");
-    return {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
-    };
-  };
+
 
   const fetchContracts = useCallback(async () => {
     try {

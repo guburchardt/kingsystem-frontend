@@ -75,7 +75,14 @@ class ClientService {
       method: "DELETE",
       headers: getAuthHeaders(),
     });
-    if (!response.ok) throw new Error('Erro ao deletar cliente');
+    
+    if (!response.ok) {
+      const data = await response.json();
+      if (response.status === 400 && data.message?.includes('active rentals')) {
+        throw new Error('Não é possível excluir um cliente que possui locações ativas. Desative o cliente em vez de excluí-lo.');
+      }
+      throw new Error(data.message || 'Erro ao deletar cliente');
+    }
   }
 }
 

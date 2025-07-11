@@ -83,7 +83,7 @@ export const ClientsPage: React.FC = () => {
     } catch (err: any) {
       setSnackbar({
         open: true,
-        message: err.response?.data?.message || 'Erro ao excluir cliente',
+        message: err.message || 'Erro ao excluir cliente',
         severity: 'error',
       });
     } finally {

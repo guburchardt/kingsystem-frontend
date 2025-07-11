@@ -74,7 +74,7 @@ export const DashboardPage: React.FC = () => {
       if (sellerId) {
         // Buscar apenas dados do vendedor específico (para vendedores)
         const response = await fetch(
-          `${API_BASE_URL}/dashboard/seller-performance?month=${month}&year=${year}&sellerId=${sellerId}`,
+          `${API_BASE_URL}/api/dashboard/seller-performance?month=${month}&year=${year}&sellerId=${sellerId}`,
           {
             method: 'GET',
             headers: getAuthHeaders(),
@@ -90,7 +90,7 @@ export const DashboardPage: React.FC = () => {
       } else {
         // Buscar todos os vendedores (admin) - usar rota específica
         const response = await fetch(
-          `${API_BASE_URL}/dashboard/sales-performance?period=month&month=${month}&year=${year}`,
+          `${API_BASE_URL}/api/dashboard/sales-performance?period=month&month=${month}&year=${year}`,
           {
             method: 'GET',
             headers: getAuthHeaders(),
@@ -123,7 +123,7 @@ export const DashboardPage: React.FC = () => {
   const fetchSalesGoals = async (month: number, year: number) => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/dashboard/sales-goals?month=${month}&year=${year}`,
+        `${API_BASE_URL}/api/dashboard/sales-goals?month=${month}&year=${year}`,
         {
           method: 'GET',
           headers: getAuthHeaders(),
@@ -150,7 +150,7 @@ export const DashboardPage: React.FC = () => {
       setSelectedSeller(seller);
       
       const response = await fetch(
-        `${API_BASE_URL}/dashboard/seller-rentals?sellerId=${seller.seller_id}&month=${selectedMonth}&year=${selectedYear}`,
+        `${API_BASE_URL}/api/dashboard/seller-rentals?sellerId=${seller.seller_id}&month=${selectedMonth}&year=${selectedYear}`,
         {
           method: 'GET',
           headers: getAuthHeaders(),

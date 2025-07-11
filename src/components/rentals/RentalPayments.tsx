@@ -28,6 +28,7 @@ import rentalService from '../../services/rentalService';
 import { format } from 'date-fns';
 import { useAuth } from '../../contexts/AuthContext';
 import { BrazilianDateInput } from '../common/BrazilianDateInput';
+import { API_BASE_URL } from '../../services/api';
 
 interface RentalPaymentsProps {
   rentalId: string;
@@ -279,7 +280,7 @@ export const RentalPayments: React.FC<RentalPaymentsProps> = memo(({ rentalId, d
   const handleDownloadReceipt = (receiptUrl: string, paymentAmount: number, dueDate: string, paymentId?: string) => {
     // Create download link
     const link = document.createElement('a');
-    link.href = `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/uploads/${receiptUrl}`;
+    link.href = `${API_BASE_URL}/uploads/${receiptUrl}`;
     
     // Get payment index for filename
     const paymentIndex = paymentId ? payments.findIndex(p => p.id === paymentId) + 1 : '';

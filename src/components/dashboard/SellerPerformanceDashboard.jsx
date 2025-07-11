@@ -26,7 +26,7 @@ const SellerPerformanceDashboard = () => {
   const fetchSellerPerformance = async (month, year) => {
     try {
       setLoading(true);
-      const response = await api.get('/dashboard/seller-performance', {
+      const response = await api.get('/api/dashboard/seller-performance', {
         params: { month: month + 1, year }
       });
       setSellers(response.data.data);
