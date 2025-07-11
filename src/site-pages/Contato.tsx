@@ -7,6 +7,7 @@ import { Input } from '../site-components/ui/input';
 import { Textarea } from '../site-components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../site-components/ui/select';
 import { Phone, MapPin, Clock, MessageCircle, Send } from 'lucide-react';
+import { config } from '../config/env';
 
 const Contato = () => {
   const lojistas = [
@@ -21,28 +22,43 @@ const Contato = () => {
     window.open(`https://wa.me/55${numeroLimpo}?text=Olá ${nome}! Gostaria de solicitar um orçamento para aluguel de limousine.`, '_blank');
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     
-    // Construir mensagem para WhatsApp
-    const nome = formData.get('name') as string;
-    const contato = formData.get('contact_method') as string;
-    const telefone = formData.get('phone') as string;
-    const email = formData.get('email') as string;
-    const cidade = formData.get('city') as string;
-    const mensagem = formData.get('message') as string;
-    
-    let whatsappMessage = `Olá! Meu nome é ${nome}.\n`;
-    whatsappMessage += `Forma de contato preferida: ${contato}\n`;
-    if (telefone) whatsappMessage += `Telefone: ${telefone}\n`;
-    if (email) whatsappMessage += `E-mail: ${email}\n`;
-    if (cidade) whatsappMessage += `Cidade: ${cidade}\n`;
-    if (mensagem) whatsappMessage += `Mensagem: ${mensagem}`;
-    
-    // Enviar para o primeiro lojista (Roberta)
-    const numeroLimpo = lojistas[0].numero.replace(/\D/g, '');
-    window.open(`https://wa.me/55${numeroLimpo}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    // Preparar dados para enviar ao backend
+    const emailData = {
+      name: formData.get('name') as string,
+      phone: formData.get('phone') as string,
+      email: formData.get('email') as string,
+      city: formData.get('city') as string,
+      contact_method: formData.get('contact_method') as string,
+      message: formData.get('message') as string,
+      status: 'pendente'
+    };
+
+    try {
+      // Enviar para o backend
+      const response = await fetch(`${config.API_URL}/emails`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      });
+
+      if (response.ok) {
+        // Sucesso - mostrar mensagem e limpar formulário
+        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        (e.target as HTMLFormElement).reset();
+      } else {
+        // Erro
+        alert('Erro ao enviar mensagem. Tente novamente.');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar mensagem:', error);
+      alert('Erro ao enviar mensagem. Tente novamente.');
+    }
   };
 
   return (

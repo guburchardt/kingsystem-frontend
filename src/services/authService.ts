@@ -10,6 +10,8 @@ class AuthService {
 
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     try {
+      console.log('🔍 Tentando login em:', `${API_BASE_URL}/api/auth/login`);
+      
       const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
@@ -18,12 +20,17 @@ class AuthService {
         body: JSON.stringify(credentials),
       });
 
+      console.log(' Status da resposta:', response.status);
+      console.log('📡 Headers da resposta:', response.headers);
+
       const data = await response.json();
 
       if (!response.ok) {
+        console.error('❌ Erro no login:', data);
         throw new Error(data.message || "Erro no login");
       }
 
+      console.log('✅ Login bem-sucedido');
       this.token = data.token;
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
@@ -34,8 +41,18 @@ class AuthService {
         user: data.user
       };
     } catch (error) {
-      console.error("Erro no login:", error);
-      throw error;
+      console.error("❌ Erro detalhado no login:", error);
+      
+      // Tratamento específico para diferentes tipos de erro
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        throw new Error("Erro de conexão. Verifique sua internet e tente novamente.");
+      }
+      
+      if (error instanceof Error) {
+        throw error;
+      }
+      
+      throw new Error("Erro inesperado no login. Tente novamente.");
     }
   }
 
