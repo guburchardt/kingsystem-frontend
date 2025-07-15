@@ -106,7 +106,8 @@ export const RentalFormPage: React.FC = () => {
   const [courtesiesTotal, setCourtesiesTotal] = useState<number>(0);
   const [rental, setRental] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [canEdit, setCanEdit] = useState(true); // Novo estado para controlar se pode editar
+  const [canEdit, setCanEdit] = useState(false); // Inicialmente false, será definido após carregar os dados
+
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
     message: string;
@@ -459,6 +460,32 @@ export const RentalFormPage: React.FC = () => {
       return allowedFieldsForApproved.includes(fieldName);
     }
     
+    return false;
+  };
+
+  // Função para verificar se o usuário pode salvar
+  const canSave = () => {
+    console.log('🔍 canSave() - Debug:');
+    console.log('   isAdmin:', isAdmin);
+    console.log('   canEdit:', canEdit);
+    console.log('   rental?.status:', rental?.status);
+    
+    if (isAdmin) {
+      console.log('   ✅ Admin sempre pode salvar');
+      return true; // Admin sempre pode salvar
+    }
+    if (canEdit) {
+      console.log('   ✅ Pode editar tudo, pode salvar');
+      return true; // Se pode editar tudo, pode salvar
+    }
+    
+    // Para vendedores em locações aprovadas, sempre pode salvar (já que tem campos editáveis)
+    if (!isAdmin && rental?.status === 'approved') {
+      console.log('   ✅ Vendedor em locação aprovada, pode salvar campos de localização');
+      return true; // Vendedores podem sempre salvar em locações aprovadas (campos de localização)
+    }
+    
+    console.log('   ❌ Não pode salvar');
     return false;
   };
 
@@ -828,7 +855,7 @@ export const RentalFormPage: React.FC = () => {
                 type="submit" 
                 variant="contained" 
                 startIcon={loading ? <CircularProgress size={20} /> : <SaveIcon />} 
-                disabled={loading || !formik.isValid || !canEdit}
+                disabled={loading || !canSave()}
               >
                 {loading ? 'Salvando...' : 'Salvar'}
               </Button>
