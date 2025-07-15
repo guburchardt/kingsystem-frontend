@@ -2,9 +2,11 @@ import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Users, Phone, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const CatalogoSection = () => {
   const navigate = useNavigate();
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
 
   const limousines = [
     {
@@ -57,6 +59,10 @@ const CatalogoSection = () => {
     navigate(`/limousine/${id}`);
   };
 
+  const handleImageLoad = (id: number) => {
+    setLoadedImages(prev => new Set([...Array.from(prev), id]));
+  };
+
   return (
     <section id="catalogo" className="py-20 bg-gradient-to-b from-black to-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,9 +80,20 @@ const CatalogoSection = () => {
             <Card key={limo.id} className="bg-gray-800/50 border-purple-500/20 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:scale-105">
               <div className="relative h-64 overflow-hidden">
                 <img 
-                  src={limo.image} 
+                  src={`${limo.image}?quality=10&w=400`}
+                  data-src={limo.image}
                   alt={limo.name}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  loading="lazy"
+                  className={`w-full h-full object-cover transition-all duration-500 ${
+                    loadedImages.has(limo.id) ? 'scale-100 blur-0' : 'scale-110 blur-sm'
+                  }`}
+                  onLoad={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.dataset.src) {
+                      target.src = target.dataset.src;
+                      handleImageLoad(limo.id);
+                    }
+                  }}
                 />
                 <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full flex items-center">
                   <Users size={16} className="mr-1" />

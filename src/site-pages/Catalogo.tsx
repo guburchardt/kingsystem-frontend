@@ -4,9 +4,11 @@ import { Button } from '../site-components/ui/button';
 import { Card, CardContent } from '../site-components/ui/card';
 import { Users, Phone, Star, Clock, Shield, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Catalogo = () => {
   const navigate = useNavigate();
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
 
   const limousines = [
     {
@@ -64,6 +66,10 @@ const Catalogo = () => {
     navigate(`/limousine/${id}`);
   };
 
+  const handleImageLoad = (id: number) => {
+    setLoadedImages(prev => new Set([...Array.from(prev), id]));
+  };
+
   return (
     <div className="min-h-screen bg-black">
       <Header />
@@ -108,9 +114,20 @@ const Catalogo = () => {
                 <div className="md:flex">
                   <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
                     <img 
-                      src={`${limo.image}?v=${Date.now()}`} 
+                      src={`${limo.image}?quality=10&w=400`}
+                      data-src={limo.image}
                       alt={limo.name}
-                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      className={`w-full h-full object-cover transition-all duration-500 ${
+                        loadedImages.has(limo.id) ? 'scale-100 blur-0' : 'scale-110 blur-sm'
+                      }`}
+                      onLoad={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (target.dataset.src) {
+                          target.src = target.dataset.src;
+                          handleImageLoad(limo.id);
+                        }
+                      }}
                     />
                     <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full flex items-center">
                       <Users size={16} className="mr-1" />

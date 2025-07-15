@@ -5,10 +5,12 @@ import { Button } from '../site-components/ui/button';
 import { Card, CardContent } from '../site-components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../site-components/ui/carousel';
 import { Users, Phone, Star, ArrowLeft, Check } from 'lucide-react';
+import { useState } from 'react';
 
 const LimousineDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   const limousines = [
     {
@@ -184,6 +186,10 @@ const LimousineDetails = () => {
     navigate('/contato');
   };
 
+  const handleImageLoad = (imageSrc: string) => {
+    setLoadedImages(prev => new Set([...Array.from(prev), imageSrc]));
+  };
+
   return (
     <div className="min-h-screen bg-black">
       <Header />
@@ -209,9 +215,20 @@ const LimousineDetails = () => {
                       <Card className="border-0">
                         <CardContent className="p-0">
                           <img
-                            src={image}
+                            src={`${image}?quality=10&w=800`}
+                            data-src={image}
                             alt={`${limousine.name} - Foto ${index + 1}`}
-                            className="w-full h-96 object-cover rounded-lg"
+                            loading="lazy"
+                            className={`w-full h-96 object-cover rounded-lg transition-all duration-500 ${
+                              loadedImages.has(image) ? 'scale-100 blur-0' : 'scale-110 blur-sm'
+                            }`}
+                            onLoad={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              if (target.dataset.src) {
+                                target.src = target.dataset.src;
+                                handleImageLoad(image);
+                              }
+                            }}
                           />
                         </CardContent>
                       </Card>
