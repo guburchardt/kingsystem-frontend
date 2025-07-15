@@ -208,7 +208,20 @@ export const RentalFormPage: React.FC = () => {
         console.log('Dados JSON:', JSON.stringify(rentalData, null, 2));
 
         if (isEditing && id) {
-          await rentalService.updateRental(id, rentalData);
+          // Se for vendedor editando locação aprovada, filtrar apenas campos permitidos
+          let dataToUpdate = rentalData;
+          if (!isAdmin && rental?.status === 'approved') {
+            const allowedFieldsForApproved = ['pickup_location', 'dropoff_location'];
+            dataToUpdate = {};
+            allowedFieldsForApproved.forEach(field => {
+              if (rentalData[field] !== undefined) {
+                dataToUpdate[field] = rentalData[field];
+              }
+            });
+            console.log('Vendedor editando locação aprovada - campos filtrados:', dataToUpdate);
+          }
+          
+          await rentalService.updateRental(id, dataToUpdate);
           setSnackbar({
             open: true,
             message: 'Locação atualizada com sucesso!',
@@ -292,7 +305,8 @@ export const RentalFormPage: React.FC = () => {
       console.log('   Tipo do status:', typeof rentalData.status);
       
       if (!isUserAdmin) {
-        // Vendedor só pode editar se a locação estiver aguardando aprovação (status 'pending')
+        // Vendedor pode editar se a locação estiver aguardando aprovação (status 'pending')
+        // OU se for admin (que sempre pode editar)
         const canSellerEdit = rentalData.status === 'pending';
         console.log('   Vendedor pode editar:', canSellerEdit);
         setCanEdit(canSellerEdit);
@@ -434,6 +448,20 @@ export const RentalFormPage: React.FC = () => {
 
   const selectedClient = clients.find(client => client.id === formik.values.client_id);
 
+  // Função para verificar se um campo específico pode ser editado
+  const canEditField = (fieldName: string) => {
+    if (isAdmin) return true; // Admin sempre pode editar
+    if (canEdit) return true; // Se pode editar tudo, pode editar qualquer campo
+    
+    // Para vendedores em locações aprovadas, apenas campos específicos são editáveis
+    if (!isAdmin && rental?.status === 'approved') {
+      const allowedFieldsForApproved = ['pickup_location', 'dropoff_location'];
+      return allowedFieldsForApproved.includes(fieldName);
+    }
+    
+    return false;
+  };
+
 
 
   if (authLoading || initialLoading) {
@@ -470,9 +498,9 @@ export const RentalFormPage: React.FC = () => {
         <Alert severity="info" sx={{ mb: 2 }}>
           <Typography variant="body1">
             <strong>Modo Visualização:</strong> Esta locação já foi aprovada. 
-            Você pode visualizar os dados e fazer upload de comprovantes de pagamento, 
-            mas não pode editar as informações da locação. 
-            Para alterações, solicite ao administrador.
+            Você pode visualizar os dados, fazer upload de comprovantes de pagamento, 
+            e editar apenas os campos de local de retirada e local de entrega. 
+            Para outras alterações, solicite ao administrador.
           </Typography>
         </Alert>
       )}
@@ -636,7 +664,7 @@ export const RentalFormPage: React.FC = () => {
                 onChange={formik.handleChange} 
                 error={formik.touched.pickup_location && Boolean(formik.errors.pickup_location)} 
                 helperText={formik.touched.pickup_location && formik.errors.pickup_location} 
-                disabled={!canEdit}
+                disabled={!canEditField('pickup_location')}
               />
               <TextField 
                 sx={{ gridColumn: 'span 2' }} 
@@ -645,7 +673,7 @@ export const RentalFormPage: React.FC = () => {
                 label="Local de Entrega" 
                 value={formik.values.dropoff_location} 
                 onChange={formik.handleChange} 
-                disabled={!canEdit}
+                disabled={!canEditField('dropoff_location')}
               />
               
               <FormControl fullWidth>

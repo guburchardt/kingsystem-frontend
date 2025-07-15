@@ -13,7 +13,7 @@ const Catalogo = () => {
       id: 1,
       name: "300C Crysler",
       capacity: "6 pessoas",
-      image: "https://res.cloudinary.com/dcnowyew6/image/upload/v1748390546/Screenshot_from_2025-05-27_20-59-32_shftii.png",
+      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/300C/IMG_5121.JPG",
       features: ["Luzes", "Som premium", "Cooler", "Ar condicionado", "Poltronas em couro"],
       description: "Elegância clássica para seus eventos especiais",
       rating: 5.0,
