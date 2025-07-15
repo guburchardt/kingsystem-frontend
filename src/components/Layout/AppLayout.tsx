@@ -68,6 +68,12 @@ const menuItems = [
     roles: ['admin', 'seller']
   },
   { 
+    text: 'CUSTOS', 
+    icon: AttachMoney, 
+    path: '/costs',
+    roles: ['admin', 'seller']
+  },
+  { 
     text: 'RELATÓRIOS', 
     icon: Assessment, 
     path: '/reports',
@@ -82,7 +88,6 @@ const menuItems = [
     subItems: [
       { text: 'Consultores', path: '/consultores', icon: SupervisorAccount },
       { text: 'Veículos', path: '/vehicles', icon: DirectionsCar },
-      { text: 'Custos', path: '/costs', icon: AttachMoney },
       { text: 'Motoristas', path: '/drivers', icon: Person },
     ]
   },
