@@ -11,7 +11,7 @@ const CatalogoSection = () => {
       id: 1,
       name: "300C Crysler",
       capacity: "6 pessoas",
-      image: "https://res.cloudinary.com/dcnowyew6/image/upload/v1748390546/Screenshot_from_2025-05-27_20-59-32_shftii.png",
+      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/300C/IMG_5124.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar condicionado", "Poltronas em couro"],
       description: "Elegância clássica para seus eventos especiais"
     },
@@ -19,7 +19,7 @@ const CatalogoSection = () => {
       id: 2,
       name: "Nossa Gigante",
       capacity: "28 pessoas",
-      image: "https://res.cloudinary.com/dcnowyew6/image/upload/v1748393202/Screenshot_from_2025-05-27_21-46-35_wpvvyr.png",
+      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/gigante/IMG_5131.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "Luxo e conforto para grupos maiores"
     },
@@ -27,7 +27,7 @@ const CatalogoSection = () => {
       id: 3,
       name: "Pt Crysler",
       capacity: "9 pessoas",
-      image: "https://res.cloudinary.com/dcnowyew6/image/upload/v1748393474/Screenshot_from_2025-05-27_21-48-58_jiczl8.png",
+      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/ptrosa/IMG_5153.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "A escolha perfeita para festas e celebrações"
     },
@@ -35,9 +35,17 @@ const CatalogoSection = () => {
       id: 4,
       name: "Black",
       capacity: "15 pessoas",
-      image: "https://res.cloudinary.com/dcnowyew6/image/upload/v1748394063/Screenshot_from_2025-05-27_21-56-48_qleehm.png",
+      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/RAM/IMG_5143.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "O máximo em luxo e sofisticação"
+    },
+    {
+      id: 5,
+      name: "Onibus King",
+      capacity: "45 pessoas",
+      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/IMG_5108.jpg",
+      features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar", "Wi-Fi", "Tomadas USB"],
+      description: "O ônibus festa mais incrível para suas celebrações especiais"
     },
   ];
 
