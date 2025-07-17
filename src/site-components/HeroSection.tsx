@@ -49,9 +49,8 @@ const HeroSection = () => {
               Solicitar Orçamento
             </Button>
             <Button 
-              variant="outline" 
               size="lg" 
-              className="border-purple-500 text-purple-300 hover:bg-purple-500 hover:text-white px-8 py-4 text-lg"
+              className="!bg-purple-600 !text-white hover:!bg-purple-700 px-8 py-4 text-lg transition-all duration-300"
               onClick={() => document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Ver Catálogo
