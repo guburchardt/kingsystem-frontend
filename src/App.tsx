@@ -33,6 +33,7 @@ import Depoimentos from './site-pages/Depoimentos';
 import LimousineDetails from './site-pages/LimousineDetails';
 import NotFound from './site-pages/NotFound';
 import TestStyles from './site-pages/TestStyles';
+import ScrollToTop from './site-components/ScrollToTop';
 
 // Create theme
 const theme = createTheme({
@@ -89,6 +90,7 @@ const AppContent: React.FC = () => {
   return (
     // Remover <Router> daqui
     <>
+      <ScrollToTop />
       {/* Only apply CssBaseline for admin routes */}
       {!isPublicRoute && <CssBaseline />}
       <Routes>

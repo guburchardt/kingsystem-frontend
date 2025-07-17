@@ -12,6 +12,8 @@ const LimousineDetails = () => {
   const navigate = useNavigate();
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
+
+
   const limousines = [
     {
       id: 1,
@@ -158,11 +160,11 @@ const LimousineDetails = () => {
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/15.png",
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/16.png",
       ],
-      features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar", "Wi-Fi", "Tomadas USB"],
+      features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar", "Wi-Fi", "Tomadas USB", "Banheiro"],
       description: "O ônibus festa mais incrível para suas celebrações especiais",
       rating: 5.0,
       fullDescription: "Transforme qualquer ocasião em uma festa inesquecível! O Ônibus King é perfeito para 15 anos, casamentos, aniversários, despedidas de solteiro, formaturas e qualquer celebração especial. Com sistema de som profissional, iluminação ambiente e espaço para até 45 pessoas, você terá a festa mais animada da cidade!",
-      amenities: ["Champagne", "Água gelada", "Mini refrigerante", "Sistema de climatização individual", "Wi-Fi gratuito", "Tomadas USB individuais", "Banheiro", "Sistema de som profissional", "Iluminação ambiente"]
+      amenities: ["Champagne", "Água gelada", "Mini refrigerante", "Sistema de climatização individual"]
     },
   ];
 
