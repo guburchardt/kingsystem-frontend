@@ -212,7 +212,7 @@ export const RentalFormPage: React.FC = () => {
           // Se for vendedor editando locação aprovada, filtrar apenas campos permitidos
           let dataToUpdate = rentalData;
           if (!isAdmin && rental?.status === 'approved') {
-            const allowedFieldsForApproved = ['pickup_location', 'dropoff_location'];
+            const allowedFieldsForApproved = ['pickup_location', 'dropoff_location', 'driver_id'];
             dataToUpdate = {};
             allowedFieldsForApproved.forEach(field => {
               if (rentalData[field] !== undefined) {
@@ -456,7 +456,7 @@ export const RentalFormPage: React.FC = () => {
     
     // Para vendedores em locações aprovadas, apenas campos específicos são editáveis
     if (!isAdmin && rental?.status === 'approved') {
-      const allowedFieldsForApproved = ['pickup_location', 'dropoff_location'];
+      const allowedFieldsForApproved = ['pickup_location', 'dropoff_location', 'driver_id'];
       return allowedFieldsForApproved.includes(fieldName);
     }
     
@@ -526,7 +526,7 @@ export const RentalFormPage: React.FC = () => {
           <Typography variant="body1">
             <strong>Modo Visualização:</strong> Esta locação já foi aprovada. 
             Você pode visualizar os dados, fazer upload de comprovantes de pagamento, 
-            e editar apenas os campos de local de retirada e local de entrega. 
+            e editar apenas os campos de local de retirada, local de entrega e motorista. 
             Para outras alterações, solicite ao administrador.
           </Typography>
         </Alert>
@@ -676,7 +676,7 @@ export const RentalFormPage: React.FC = () => {
                   value={drivers.length > 0 ? formik.values.driver_id : ''} 
                   onChange={formik.handleChange} 
                   error={formik.touched.driver_id && Boolean(formik.errors.driver_id)} 
-                  disabled={!canEdit}
+                  disabled={!canEditField('driver_id')}
                 >
                   {drivers.map((driver) => (<MenuItem key={driver.id} value={driver.id}>{driver.name}</MenuItem>))}
                 </Select>
