@@ -155,6 +155,11 @@ export const FinanceiroPage: React.FC = () => {
     handleActionMenuClose();
   };
 
+  const handleViewRental = (rentalId: string) => {
+    navigate(`/rentals/${rentalId}/edit`);
+    handleActionMenuClose();
+  };
+
   const handleMarkAsPaid = async (receitaId: string) => {
     try {
       await financeiroService.updateReceitaStatus(receitaId, 'paid');
@@ -525,6 +530,9 @@ export const FinanceiroPage: React.FC = () => {
         </MenuItem>
         <MenuItem onClick={() => selectedReceita && handleViewContract(selectedReceita.rental_id)}>
           Ver Contrato
+        </MenuItem>
+        <MenuItem onClick={() => selectedReceita && handleViewRental(selectedReceita.rental_id)}>
+          Ver Locação
         </MenuItem>
       </Menu>
     </Box>

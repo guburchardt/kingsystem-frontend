@@ -913,12 +913,14 @@ export const RentalFormPage: React.FC = () => {
               </Box>
             </Paper>
           )}
-          <RentalCourtesies 
-            key={`courtesies-${id || 'new'}`} 
-            rentalId={id || 'new'} 
-            onCourtesiesChange={handleCourtesiesChange} 
-            disabled={!canEdit}
-          />
+          {isEditing && id && (
+            <RentalCourtesies 
+              key={`courtesies-${id}`} 
+              rentalId={id} 
+              onCourtesiesChange={handleCourtesiesChange} 
+              disabled={!canEdit}
+            />
+          )}
           {isEditing && id && (
             <RentalPayments key={`payments-${id}`} rentalId={id} disabled={!canEdit} />
           )}
