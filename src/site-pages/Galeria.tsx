@@ -585,112 +585,112 @@ const Galeria = () => {
     },
     {
       id: 83,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/1.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/1.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 84,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/2.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/2.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 85,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/3.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/3.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 86,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/4.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/4.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 87,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/5.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/5.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 88,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/6.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/6.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 89,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/7.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/7.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 90,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/8.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/8.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 91,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/9.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/9.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 92,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/10.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/10.png",
       alt: "Exterior Onibus King - King Limousines",
       category: "Exterior",
       limo: "Onibus King"
     },
     {
       id: 93,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/11.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/11.png",
       alt: "Interior Onibus King - King Limousines",
       category: "Interior",
       limo: "Onibus King"
     },
     {
       id: 94,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/12.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/12.png",
       alt: "Interior Onibus King - King Limousines",
       category: "Interior",
       limo: "Onibus King"
     },
     {
       id: 95,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/13.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/13.png",
       alt: "Interior Onibus King - King Limousines",
       category: "Interior",
       limo: "Onibus King"
     },
     {
       id: 96,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/14.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/14.png",
       alt: "Interior Onibus King - King Limousines",
       category: "Interior",
       limo: "Onibus King"
     },
     {
       id: 97,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/15.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/15.png",
       alt: "Interior Onibus King - King Limousines",
       category: "Interior",
       limo: "Onibus King"
     },
     {
       id: 98,
-      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/16.png",
+      src: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/16.png",
       alt: "Interior Onibus King - King Limousines",
       category: "Interior",
       limo: "Onibus King"

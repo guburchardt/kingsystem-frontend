@@ -52,7 +52,7 @@ const CatalogoSection = () => {
     {
       id: 2,
       name: "Nossa Gigante",
-      capacity: "28 pessoas",
+      capacity: "30 pessoas",
       image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/gigante/1.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "Luxo e conforto para grupos maiores"
@@ -60,7 +60,7 @@ const CatalogoSection = () => {
     {
       id: 3,
       name: "Pt Crysler",
-      capacity: "9 pessoas",
+      capacity: "10 pessoas",
       image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/ptrosa/3.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "A escolha perfeita para festas e celebrações"
@@ -68,7 +68,7 @@ const CatalogoSection = () => {
     {
       id: 4,
       name: "Black",
-      capacity: "15 pessoas",
+      capacity: "14 pessoas",
       image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/RAM/2.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "O máximo em luxo e sofisticação"
@@ -76,7 +76,7 @@ const CatalogoSection = () => {
     {
       id: 5,
       name: "Onibus King",
-      capacity: "45 pessoas",
+      capacity: "22 pessoas",
       image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/1.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar", "Wi-Fi", "Tomadas USB"],
       description: "O ônibus festa mais incrível para suas celebrações especiais"

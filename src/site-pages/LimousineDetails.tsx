@@ -42,7 +42,7 @@ const LimousineDetails = () => {
     {
       id: 2,
       name: "Nossa Gigante",
-      capacity: "28 pessoas",
+      capacity: "30 pessoas",
       images: [
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/gigante/2.png",
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/gigante/1.png",
@@ -72,7 +72,7 @@ const LimousineDetails = () => {
     {
       id: 3,
       name: "Pt Crysler",
-      capacity: "9 pessoas",
+      capacity: "10 pessoas",
       images: [
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/ptrosa/1.png",
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/ptrosa/2.png",
@@ -105,7 +105,7 @@ const LimousineDetails = () => {
     {
       id: 4,
       name: "Black",
-      capacity: "15 pessoas",
+      capacity: "14 pessoas",
       images: [
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/RAM/1.png",
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/RAM/2.png",
@@ -139,7 +139,7 @@ const LimousineDetails = () => {
     {
       id: 5,
       name: "Onibus King",
-      capacity: "45 pessoas",
+      capacity: "22 pessoas",
       images: [
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/1.png",
         "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/2.png",
