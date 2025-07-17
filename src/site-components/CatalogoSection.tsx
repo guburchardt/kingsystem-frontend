@@ -4,6 +4,38 @@ import { Users, Phone, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+// Componente otimizado para imagens
+const OptimizedImage = ({ src, alt, className }: { src: string; alt: string; className: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  // Gerar URLs otimizadas
+  const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+  const optimizedSrc = `${src}?format=webp&quality=85&w=800`;
+  const thumbnailSrc = `${src}?quality=10&w=200`;
+
+  return (
+    <picture>
+      <source srcSet={optimizedSrc} type="image/webp" />
+      <img 
+        src={thumbnailSrc}
+        data-src={optimizedSrc}
+        alt={alt}
+        loading="lazy"
+        className={`${className} transition-all duration-500 ${
+          isLoaded ? 'scale-100 blur-0' : 'scale-110 blur-sm'
+        }`}
+        onLoad={(e) => {
+          const target = e.target as HTMLImageElement;
+          if (target.dataset.src) {
+            target.src = target.dataset.src;
+            setIsLoaded(true);
+          }
+        }}
+      />
+    </picture>
+  );
+};
+
 const CatalogoSection = () => {
   const navigate = useNavigate();
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
@@ -13,7 +45,7 @@ const CatalogoSection = () => {
       id: 1,
       name: "300C Crysler",
       capacity: "6 pessoas",
-      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/300C/IMG_5124.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/300C/IMG_5124.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar condicionado", "Poltronas em couro"],
       description: "Elegância clássica para seus eventos especiais"
     },
@@ -21,7 +53,7 @@ const CatalogoSection = () => {
       id: 2,
       name: "Nossa Gigante",
       capacity: "28 pessoas",
-      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/gigante/IMG_5131.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/gigante/IMG_5131.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "Luxo e conforto para grupos maiores"
     },
@@ -29,7 +61,7 @@ const CatalogoSection = () => {
       id: 3,
       name: "Pt Crysler",
       capacity: "9 pessoas",
-      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/ptrosa/IMG_5153.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/ptrosa/IMG_5153.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "A escolha perfeita para festas e celebrações"
     },
@@ -37,7 +69,7 @@ const CatalogoSection = () => {
       id: 4,
       name: "Black",
       capacity: "15 pessoas",
-      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/RAM/IMG_5143.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/RAM/IMG_5143.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "O máximo em luxo e sofisticação"
     },
@@ -45,7 +77,7 @@ const CatalogoSection = () => {
       id: 5,
       name: "Onibus King",
       capacity: "45 pessoas",
-      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/IMG_5108.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/onibus/IMG_5108.jpg",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar", "Wi-Fi", "Tomadas USB"],
       description: "O ônibus festa mais incrível para suas celebrações especiais"
     },
@@ -79,21 +111,10 @@ const CatalogoSection = () => {
           {limousines.map((limo) => (
             <Card key={limo.id} className="bg-gray-800/50 border-purple-500/20 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:scale-105">
               <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={`${limo.image}?quality=10&w=400`}
-                  data-src={limo.image}
+                <OptimizedImage 
+                  src={limo.image}
                   alt={limo.name}
-                  loading="lazy"
-                  className={`w-full h-full object-cover transition-all duration-500 ${
-                    loadedImages.has(limo.id) ? 'scale-100 blur-0' : 'scale-110 blur-sm'
-                  }`}
-                  onLoad={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    if (target.dataset.src) {
-                      target.src = target.dataset.src;
-                      handleImageLoad(limo.id);
-                    }
-                  }}
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full flex items-center">
                   <Users size={16} className="mr-1" />

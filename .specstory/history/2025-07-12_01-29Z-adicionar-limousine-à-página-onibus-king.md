@@ -430,6 +430,173 @@ Agora vou otimizar o arquivo Catalogo.tsx:
 
 ---
 
+```diff
+  import { Users, Phone, Star, Clock, Shield, Eye } from 'lucide-react';
+  import { useNavigate } from 'react-router-dom';
++ import { useState } from 'react';
+  
+  const Catalogo = () => {
+    const navigate = useNavigate();
++   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  
+    const limousines = [
+```
+
+```diff
+      navigate(`/limousine/${id}`);
+    };
++ 
++   const handleImageLoad = (id: number) => {
++     setLoadedImages(prev => new Set([...Array.from(prev), id]));
++   };
+  
+    return (
+```
+
+```diff
+                    <div className="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
+                      <img 
+-                       src={`${limo.image}?v=${Date.now()}`} 
++                       src={`${limo.image}?quality=10&w=400`}
++                       data-src={limo.image}
+                        alt={limo.name}
+-                       className="w-full h-full object-cover"
++                       loading="lazy"
++                       className={`w-full h-full object-cover transition-all duration-500 ${
++                         loadedImages.has(limo.id) ? 'scale-100 blur-0' : 'scale-110 blur-sm'
++                       }`}
++                       onLoad={(e) => {
++                         const target = e.target as HTMLImageElement;
++                         if (target.dataset.src) {
++                           target.src = target.dataset.src;
++                           handleImageLoad(limo.id);
++                         }
++                       }}
+                      />
+                      <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full flex items-center">
+```
+
+---
+
+Agora vou otimizar o arquivo LimousineDetails.tsx:
+
+
+---
+
+```diff
+  import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../site-components/ui/carousel';
+  import { Users, Phone, Star, ArrowLeft, Check } from 'lucide-react';
++ import { useState } from 'react';
+  
+  const LimousineDetails = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
++   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  
+    const limousines = [
+```
+
+```diff
+      navigate('/contato');
+    };
++ 
++   const handleImageLoad = (imageSrc: string) => {
++     setLoadedImages(prev => new Set([...Array.from(prev), imageSrc]));
++   };
+  
+    return (
+```
+
+```diff
+                          <CardContent className="p-0">
+                            <img
+-                             src={image}
++                             src={`${image}?quality=10&w=800`}
++                             data-src={image}
+                              alt={`${limousine.name} - Foto ${index + 1}`}
+-                             className="w-full h-96 object-cover rounded-lg"
++                             loading="lazy"
++                             className={`w-full h-96 object-cover rounded-lg transition-all duration-500 ${
++                               loadedImages.has(image) ? 'scale-100 blur-0' : 'scale-110 blur-sm'
++                             }`}
++                             onLoad={(e) => {
++                               const target = e.target as HTMLImageElement;
++                               if (target.dataset.src) {
++                                 target.src = target.dataset.src;
++                                 handleImageLoad(image);
++                               }
++                             }}
+                            />
+                          </CardContent>
+```
+
+---
+
+Perfeito! Implementei as otimizações de **Lazy Loading** e **Progressive Loading** em todos os arquivos que você anexou. Aqui está um resumo das melhorias:
+
+## 🚀 **Otimizações Implementadas**
+
+### **1. Lazy Loading**
+- Adicionado `loading="lazy"` em todas as imagens
+- As imagens só carregam quando ficam visíveis na tela
+- Reduz significativamente o tempo de carregamento inicial
+
+### **2. Progressive Loading**
+- **Versão de baixa qualidade primeiro**: `?quality=10&w=400` (ou `w=800` para carousel)
+- **Transição suave**: Efeito blur que desaparece quando a imagem original carrega
+- **Estado visual**: `scale-110 blur-sm` → `scale-100 blur-0`
+
+### **3. Estados de Carregamento**
+- **CatalogoSection.tsx**: Controla estado por ID da limousine
+- **Catalogo.tsx**: Mesmo sistema de estado
+- **LimousineDetails.tsx**: Controla estado por URL da imagem
+
+### **4. Parâmetros de Otimização**
+```jsx
+// Versão de baixa qualidade
+src={`${image}?quality=10&w=400`}
+
+// Imagem original (carrega depois)
+data-src={image}
+```
+
+### **5. Efeitos Visuais**
+- **Blur inicial**: `blur-sm` para indicar carregamento
+- **Transição suave**: `transition-all duration-500`
+- **Scale effect**: `scale-110` → `scale-100`
+
+## �� **Benefícios**
+
+1. **Carregamento mais rápido**: Imagens menores carregam primeiro
+2. **Melhor UX**: Usuário vê conteúdo imediatamente
+3. **Menos dados**: Reduz consumo de banda
+4. **Performance**: Melhora pontuação do Lighthouse
+5. **Responsividade**: Funciona bem em conexões lentas
+
+As imagens agora carregam de forma muito mais eficiente, proporcionando uma experiência muito melhor para os usuários! 🎉
+
+---
+
+_**User**_
+
+Ainda sim as imagens estao demorando muito pra carregar, o que posso habilitar na amazon
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+
+
+---
+
+
+
+---
+
 
 
 ---

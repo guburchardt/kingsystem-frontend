@@ -248,7 +248,7 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ bgcolor: '#2c3e50', zIndex: 1201 }}>
+      <AppBar position="fixed" sx={{ bgcolor: '#dc2626', zIndex: 1201 }}>
         <Toolbar sx={{ minHeight: 56, display: 'flex', justifyContent: 'space-between', px: 2 }}>
           {/* Logo e navegação */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
