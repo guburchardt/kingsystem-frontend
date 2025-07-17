@@ -45,7 +45,7 @@ const CatalogoSection = () => {
       id: 1,
       name: "300C Crysler",
       capacity: "6 pessoas",
-      image: "https://d1234567890.cloudfront.net/limousines/300C/IMG_5124.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/300C/3.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar condicionado", "Poltronas em couro"],
       description: "Elegância clássica para seus eventos especiais"
     },
@@ -53,7 +53,7 @@ const CatalogoSection = () => {
       id: 2,
       name: "Nossa Gigante",
       capacity: "28 pessoas",
-      image: "https://d1234567890.cloudfront.net/limousines/gigante/IMG_5131.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/gigante/1.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "Luxo e conforto para grupos maiores"
     },
@@ -61,7 +61,7 @@ const CatalogoSection = () => {
       id: 3,
       name: "Pt Crysler",
       capacity: "9 pessoas",
-      image: "https://d1234567890.cloudfront.net/limousines/ptrosa/IMG_5153.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/ptrosa/3.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "A escolha perfeita para festas e celebrações"
     },
@@ -69,7 +69,7 @@ const CatalogoSection = () => {
       id: 4,
       name: "Black",
       capacity: "15 pessoas",
-      image: "https://d1234567890.cloudfront.net/limousines/RAM/IMG_5143.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/RAM/2.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar"],
       description: "O máximo em luxo e sofisticação"
     },
@@ -77,7 +77,7 @@ const CatalogoSection = () => {
       id: 5,
       name: "Onibus King",
       capacity: "45 pessoas",
-      image: "https://d1234567890.cloudfront.net/limousines/onibus/IMG_5108.jpg",
+      image: "https://d1234567890.cloudfront.net/limousines/onibus/1.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar", "Wi-Fi", "Tomadas USB"],
       description: "O ônibus festa mais incrível para suas celebrações especiais"
     },
