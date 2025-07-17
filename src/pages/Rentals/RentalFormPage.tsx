@@ -106,7 +106,7 @@ export const RentalFormPage: React.FC = () => {
   const [courtesiesTotal, setCourtesiesTotal] = useState<number>(0);
   const [rental, setRental] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [canEdit, setCanEdit] = useState(false); // Inicialmente false, será definido após carregar os dados
+  const [canEdit, setCanEdit] = useState(!isEditing); // Se não está editando, pode editar tudo
 
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
