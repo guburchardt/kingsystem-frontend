@@ -77,7 +77,7 @@ const CatalogoSection = () => {
       id: 5,
       name: "Onibus King",
       capacity: "45 pessoas",
-      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/onibus/1.png",
+      image: "https://kinglimousinessystem2.s3.us-east-1.amazonaws.com/limousines/onibus/1.png",
       features: ["Luzes", "Som premium", "Cooler", "Ar Condicionado", "Poltronas em couro", "Teto solar", "Wi-Fi", "Tomadas USB"],
       description: "O ônibus festa mais incrível para suas celebrações especiais"
     },
