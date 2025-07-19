@@ -5,9 +5,13 @@ console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
 
 // Função para normalizar URL da API
 function normalizeApiUrl(url: string): string {
-  // Se não tem protocolo, adiciona HTTPS
+  // Se não tem protocolo, adiciona HTTP para desenvolvimento
   if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    if (process.env.NODE_ENV === 'production') {
     url = 'https://' + url;
+    } else {
+      url = 'http://' + url;
+    }
   }
   // Para produção, sempre usar HTTPS
   if (process.env.NODE_ENV === 'production') {

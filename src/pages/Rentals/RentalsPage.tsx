@@ -316,31 +316,175 @@ const getStatusIcon = (rental: Rental) => {
   
   switch (rowClass) {
     case 'cinza':
-      return <ErrorIcon sx={{ fontSize: 16 }} />;
+      return (
+        <Box 
+          component="span" 
+          className="label label-secondary tip" 
+          title="Concluída"
+          sx={{ 
+            bgcolor: '#6c757d', 
+            color: 'white', 
+            padding: '2px 6px', 
+            borderRadius: '3px',
+            fontSize: '11px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 0.5
+          }}
+        >
+          ✓
+        </Box>
+      );
     case 'vermelho':
-      return <ErrorIcon sx={{ fontSize: 16, color: '#d32f2f', fontWeight: 'bold' }} />; // Erro urgente para pagamentos atrasados
+      return (
+        <Box 
+          component="span" 
+          className="label label-danger tip" 
+          title="Pagamento Atrasado"
+          sx={{ 
+            bgcolor: '#dc3545', 
+            color: 'white', 
+            padding: '2px 6px', 
+            borderRadius: '3px',
+            fontSize: '11px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 0.5
+          }}
+        >
+          ⚠
+        </Box>
+      );
     case 'azul':
     case 'roxo':
     case 'verde':
-      return <CheckCircleIcon sx={{ fontSize: 16 }} />;
+      return (
+        <Box 
+          component="span" 
+          className="label label-success tip" 
+          title="Aprovada"
+          sx={{ 
+            bgcolor: '#28a745', 
+            color: 'white', 
+            padding: '2px 6px', 
+            borderRadius: '3px',
+            fontSize: '11px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 0.5
+          }}
+        >
+          ✓
+        </Box>
+      );
     case 'azulClaro':
     case 'roxoClaro':
     case 'rosa':
-      return <MonetizationOnIcon sx={{ fontSize: 16 }} />;
+      return (
+        <Box 
+          component="span" 
+          className="label pendencia tip" 
+          title="Com Pendência"
+          sx={{ 
+            bgcolor: '#ffc107', 
+            color: '#212529', 
+            padding: '2px 6px', 
+            borderRadius: '3px',
+            fontSize: '11px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 0.5
+          }}
+        >
+          💰
+        </Box>
+      );
     case 'laranja':
-      return <WarningIcon sx={{ fontSize: 16 }} />;
     default:
-      return <WarningIcon sx={{ fontSize: 16 }} />;
+      return (
+        <Box 
+          component="span" 
+          className="label label-warning tip" 
+          title="Aguardando"
+          sx={{ 
+            bgcolor: '#fd7e14', 
+            color: 'white', 
+            padding: '2px 6px', 
+            borderRadius: '3px',
+            fontSize: '11px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 0.5
+          }}
+        >
+          📧
+        </Box>
+      );
   }
 };
 
 const getContactIcon = (contactMethod: string) => {
   switch (contactMethod) {
-    case 'whatsapp': return <ChatIcon sx={{ fontSize: 16 }} />;
-    case 'email': return <EmailIcon sx={{ fontSize: 16 }} />;
-    case 'phone': return <ContactPhoneIcon sx={{ fontSize: 16 }} />;
-    case 'instagram': return <InstagramIcon sx={{ fontSize: 16 }} />;
-    default: return <PersonIcon sx={{ fontSize: 16 }} />;
+    case 'whatsapp': 
+      return (
+        <Box 
+          component="span" 
+          className="tip" 
+          title="WhatsApp"
+          sx={{ fontSize: '16px' }}
+        >
+          💬
+        </Box>
+      );
+    case 'email': 
+      return (
+        <Box 
+          component="span" 
+          className="tip" 
+          title="Email"
+          sx={{ fontSize: '16px' }}
+        >
+          📧
+        </Box>
+      );
+    case 'phone': 
+      return (
+        <Box 
+          component="span" 
+          className="tip" 
+          title="Telefone"
+          sx={{ fontSize: '16px' }}
+        >
+          📞
+        </Box>
+      );
+    case 'instagram': 
+      return (
+        <Box 
+          component="span" 
+          className="tip" 
+          title="Instagram"
+          sx={{ fontSize: '16px' }}
+        >
+          📷
+        </Box>
+      );
+    default: 
+      return (
+        <Box 
+          component="span" 
+          className="tip" 
+          title="Outros"
+          sx={{ fontSize: '16px' }}
+        >
+          👤
+        </Box>
+      );
   }
 };
 
@@ -1215,24 +1359,32 @@ export const RentalsPage: React.FC = () => {
         </Alert>
       )}
 
-      {/* Rentals Table - Sistema de cores pastéis */}
-      <TableContainer component={Paper} sx={{ border: '1px solid #dee2e6' }}>
-        <Table sx={{ minWidth: 650 }} size="small">
+      {/* Rentals Table - Layout do Sistema Antigo */}
+      <TableContainer component={Paper} sx={{ border: '1px solid #dee2e6', boxShadow: 'none' }}>
+        <Table 
+          className="table table-bordered" 
+          sx={{ 
+            minWidth: 650, 
+            '& .MuiTableCell-root': {
+              border: '1px solid #dee2e6',
+              padding: '8px 12px',
+              fontSize: '0.875rem'
+            }
+          }} 
+          size="small"
+        >
           <TableHead>
             <TableRow sx={{ backgroundColor: '#f8f9fa' }}>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>#</TableCell>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}></TableCell>
+              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem', textAlign: 'center' }}>#</TableCell>
+              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem', textAlign: 'center' }}></TableCell>
               <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>Locado para:</TableCell>
               <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>Registrado:</TableCell>
               <TableCell sx={{ width: '8%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>Carro/Motorista:</TableCell>
               <TableCell sx={{ width: '28%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>Cliente/Categoria</TableCell>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>Bruto:</TableCell>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>Despesas:</TableCell>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>Líquido:</TableCell>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}></TableCell>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}>Status:</TableCell>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}></TableCell>
-              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem' }}></TableCell>
+              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem', textAlign: 'center' }}></TableCell>
+              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem', textAlign: 'center' }}>Status:</TableCell>
+              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem', textAlign: 'center' }}></TableCell>
+              <TableCell sx={{ width: '1%', whiteSpace: 'nowrap', fontWeight: 'bold', fontSize: '0.875rem', textAlign: 'center' }}></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -1241,7 +1393,8 @@ export const RentalsPage: React.FC = () => {
                 key={rental.id}
                 rowClass={getRowClass(rental)}
               >
-                <TableCell sx={{ whiteSpace: 'nowrap' }}>
+                {/* Coluna # - ID da locação */}
+                <TableCell sx={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
                   <Button
                     variant="text"
                     onClick={() => navigate(`/rentals/${rental.id}`)}
@@ -1250,100 +1403,131 @@ export const RentalsPage: React.FC = () => {
                       minWidth: 'auto', 
                       textTransform: 'none',
                       color: 'inherit',
-                      '&:hover': { backgroundColor: 'transparent', textDecoration: 'underline' }
+                      textDecoration: 'underline',
+                      fontSize: '0.875rem',
+                      fontWeight: 'normal',
+                      '&:hover': { backgroundColor: 'transparent' }
                     }}
                   >
                     {rental.id.toString().slice(-4)}
                   </Button>
                 </TableCell>
-                <TableCell sx={{ whiteSpace: 'nowrap' }}>
+
+                {/* Coluna vazia com ícone de stop se pit_stop */}
+                <TableCell sx={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
                   {rental.pit_stop && (
                     <img src="/images/stop.svg" alt="Stop" height="36" />
                   )}
                 </TableCell>
+
+                {/* Coluna Locado para: Data, dia da semana e horário */}
                 <TableCell sx={{ whiteSpace: 'nowrap' }}>
                   <Box>
-                    <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'inherit' }}>
+                    <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'inherit', fontSize: '0.875rem' }}>
                       {formatDateBR(rental.event_date)}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'inherit' }}>
-                      {getDayOfWeek(rental.event_date)}
+                    <Typography variant="body2" sx={{ color: 'inherit', fontSize: '0.875rem' }}>
+                      | {getDayOfWeek(rental.event_date)}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'inherit' }}>
+                    <Typography variant="body2" sx={{ color: 'inherit', fontSize: '0.875rem' }}>
                       {formatTime(rental.start_time)} - {formatTime(rental.end_time)}
                     </Typography>
-      </Box>
+                  </Box>
                 </TableCell>
+
+                {/* Coluna Registrado: Data de criação e vendedor */}
                 <TableCell sx={{ whiteSpace: 'nowrap' }}>
                   <Box>
-                    <Typography variant="body2" sx={{ color: 'inherit' }}>
+                    <Typography variant="body2" sx={{ color: 'inherit', fontSize: '0.875rem' }}>
                       {formatDateBR(rental.created_at)}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'inherit' }}>
+                    <Typography variant="body2" sx={{ color: 'inherit', fontSize: '0.875rem' }}>
                       {rental.seller_name}
                     </Typography>
                   </Box>
                 </TableCell>
+
+                {/* Coluna Carro/Motorista: Nome do veículo, motorista e ícone de pagamento do motorista */}
                 <TableCell sx={{ whiteSpace: 'nowrap' }}>
                   <Box>
-                    <Typography variant="body2" sx={{ color: 'inherit' }}>
+                    <Typography variant="body2" sx={{ color: 'inherit', fontSize: '0.875rem' }}>
                       {rental.vehicle_name}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'inherit' }}>
-                      {rental.driver_name || 'Sem Motorista Registrado'}
-                    </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <Typography variant="body2" sx={{ color: 'inherit', fontSize: '0.875rem' }}>
+                        {rental.driver_name || 'Sem Motorista Registrado'}
+                      </Typography>
+                      {/* Ícone de motorista pago (simulando o thumbs-up do sistema antigo) */}
+                      {rental.driver_name && (
+                        <Box 
+                          component="span" 
+                          className="tip text-danger noPrint" 
+                          title="Motorista está pago"
+                          sx={{ color: '#dc3545', fontSize: '14px' }}
+                        >
+                          👍
+                        </Box>
+                      )}
+                    </Box>
                   </Box>
                 </TableCell>
+
+                {/* Coluna Cliente/Categoria: Nome do cliente em negrito, cidade, categoria e duração */}
                 <TableCell sx={{ whiteSpace: 'nowrap' }}>
                   <Box>
-                    <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'inherit' }}>
+                    <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'inherit', fontSize: '0.875rem' }}>
                       {rental.client_name}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'inherit' }}>
+                    <Typography variant="body2" sx={{ color: 'inherit', fontSize: '0.875rem' }}>
                       {rental.category} - {rental.total_hours}h
                     </Typography>
                   </Box>
                 </TableCell>
-                <TableCell sx={{ whiteSpace: 'nowrap' }}>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'inherit' }}>
-                    {formatCurrencyBR(rental.total_value || 0)}
-                  </Typography>
-                </TableCell>
-                <TableCell sx={{ whiteSpace: 'nowrap' }}>
-                  <Typography variant="body2" sx={{ color: 'inherit' }}>
-                    - {formatCurrencyBR(rental.total_cost || 0)}
-                  </Typography>
-                </TableCell>
-                <TableCell sx={{ whiteSpace: 'nowrap' }}>
-                  <Typography variant="body2" sx={{ color: 'inherit' }}>
-                    {formatCurrencyBR(rental.net_amount || 0)}
-                  </Typography>
-                </TableCell>
-                <TableCell sx={{ whiteSpace: 'nowrap' }}>
+
+                {/* Coluna vazia para observações como "Remarcado" */}
+                <TableCell sx={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
                   {rental.situation === 'remarcado' && (
-                    <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'inherit' }}>
+                    <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'inherit', fontSize: '0.875rem' }}>
                       Remarcado
                     </Typography>
                   )}
                 </TableCell>
+
+                {/* Coluna Status: Ícone do status centralizado */}
                 <TableCell sx={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     {getStatusIcon(rental)}
                   </Box>
                 </TableCell>
+
+                {/* Coluna de método de contato: Ícone centralizado */}
                 <TableCell sx={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     {getContactIcon(rental.contact_method || 'person')}
                   </Box>
                 </TableCell>
+
+                {/* Coluna de ações: Menu dropdown */}
                 <TableCell sx={{ whiteSpace: 'nowrap', textAlign: 'center' }}>
-                  <IconButton
-                    size="small"
-                    onClick={(e) => handleActionMenuClick(e, rental)}
-                    sx={{ color: 'inherit' }}
-                  >
-                    <MoreVertIcon fontSize="small" />
-                  </IconButton>
+                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <IconButton
+                      size="small"
+                      onClick={(e) => handleActionMenuClick(e, rental)}
+                      sx={{ 
+                        color: 'inherit',
+                        bgcolor: '#f8f9fa',
+                        border: '1px solid #dee2e6',
+                        borderRadius: '4px',
+                        width: 28,
+                        height: 28,
+                        '&:hover': {
+                          bgcolor: '#e9ecef'
+                        }
+                      }}
+                    >
+                      <MoreVertIcon fontSize="small" />
+                    </IconButton>
+                  </Box>
                 </TableCell>
               </StyledTableRow>
             ))}
